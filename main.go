@@ -22,6 +22,8 @@ type Apple struct {
 }
 
 var screenWidth, screenHeight int
+var snake *Snake
+var apple *Apple
 
 const FRAME_WIDTH = 80
 const FRAME_HEIGHT = 15
@@ -31,6 +33,7 @@ const APPLE_SYMBOL = 0x25CF
 
 func main() {
 	initScreen()
+	initGameObjects()
 }
 
 func initScreen() {
