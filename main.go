@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"os"
 	"github.com/gdamore/tcell/v2"
+	"os"
 )
 
 type Coordinate struct {
@@ -43,6 +43,7 @@ const FRAME_BORDER_BOTTOM_LEFT = '╚'
 func main() {
 	initScreen()
 	initGameObjects()
+	displayFrame()
 }
 
 func initScreen() {
@@ -56,7 +57,7 @@ func initScreen() {
 		fmt.Fprintf(os.Stderr, "%v\n", err)
 		os.Exit(1)
 	}
-	defStyle := tcell.StyleDefault.Background(tcell.ColorRed).Foreground(tcell.ColorGreen)
+	defStyle := tcell.StyleDefault.Background(tcell.ColorBlack).Foreground(tcell.ColorWhite)
 	Screen.SetStyle(defStyle)
 	screenWidth, screenHeight := Screen.Size()
 	if screenWidth < FRAME_WIDTH || screenHeight < FRAME_HEIGHT {
@@ -73,7 +74,7 @@ func initGameObjects() {
 		symbol:         SNAKE_SYMBOL,
 	}
 	apple = &Apple{
-		point: getInitialAppleCoordinates(),
+		point:  getInitialAppleCoordinates(),
 		symbol: APPLE_SYMBOL,
 	}
 }
@@ -164,7 +165,7 @@ func printUnfilledRectangle(
 		if i == 0 {
 			upperBorder = topLeftOutline
 			lowerBorder = bottomLeftOutline
-		} else if i == width - 1 {
+		} else if i == width-1 {
 			upperBorder = topRightOutline
 			lowerBorder = bottomRightOutline
 		} else {
@@ -174,7 +175,7 @@ func printUnfilledRectangle(
 		printToFrame(xOrigin+i, yOrigin, borderThickness, borderThickness, tcell.StyleDefault, upperBorder)
 		printToFrame(xOrigin+i, yOrigin+height-1, borderThickness, borderThickness, tcell.StyleDefault, lowerBorder)
 	}
-	for i := 1; i < height - 1; i++ {
+	for i := 1; i < height-1; i++ {
 		printToFrame(xOrigin, yOrigin+i, borderThickness, borderThickness, tcell.StyleDefault, verticalBorder)
 		printToFrame(xOrigin+width-1, yOrigin+i, borderThickness, borderThickness, tcell.StyleDefault, verticalBorder)
 	}
@@ -182,7 +183,7 @@ func printUnfilledRectangle(
 
 func printToFrame(x, y, w, h int, style tcell.Style, char rune) {
 	for i := 0; i < w; i++ {
-		for j := 0; j < h; j ++ {
+		for j := 0; j < h; j++ {
 			Screen.SetContent(x+i, y+j, char, nil, style)
 		}
 	}
