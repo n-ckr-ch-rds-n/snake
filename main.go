@@ -1,6 +1,8 @@
 package main
 
-import "github.com/gdamore/tcell/v2/encoding"
+import (
+	"github.com/gdamore/tcell/v2"
+)
 
 type Coordinate struct {
 	x, y int
@@ -18,5 +20,10 @@ type Apple struct {
 }
 
 func main() {
-	encoding.Register()
+
+}
+
+func initScreen() {
+	var err error
+	Screen, err := tcell.NewScreen()
 }
