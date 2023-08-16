@@ -27,8 +27,8 @@ var Screen tcell.Screen
 var snake *Snake
 var apple *Apple
 
-const FRAME_WIDTH = 80
-const FRAME_HEIGHT = 15
+const FRAME_WIDTH = 100
+const FRAME_HEIGHT = 50
 const SNAKE_SYMBOL = 0x2588
 const APPLE_SYMBOL = 0x25CF
 
