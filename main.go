@@ -64,11 +64,31 @@ func initGameObjects() {
 
 func getInitialSnakeCoordinates() []*Coordinate {
 	snakeInitialCoordinate1 := &Coordinate{8, 4}
-	transformInitialCoordinateInsideFrame(snakeInitialCoordinate1)
+	transformCoordinateInsideFrame(snakeInitialCoordinate1)
+	snakeInitialCoordinate2 := &Coordinate{8, 5}
+	transformCoordinateInsideFrame(snakeInitialCoordinate2)
+	snakeInitialCoordinate3 := &Coordinate{8, 6}
+	transformCoordinateInsideFrame(snakeInitialCoordinate3)
+	snakeInitialCoordinate4 := &Coordinate{8, 7}
+	transformCoordinateInsideFrame(snakeInitialCoordinate4)
+	return []*Coordinate{
+		{snakeInitialCoordinate1.x, snakeInitialCoordinate1.y},
+		{snakeInitialCoordinate2.x, snakeInitialCoordinate2.y},
+		{snakeInitialCoordinate3.x, snakeInitialCoordinate3.y},
+		{snakeInitialCoordinate4.x, snakeInitialCoordinate4.y},
+	}
 }
 
-func transformInitialCoordinateInsideFrame(c *Coordinate) {
+func transformCoordinateInsideFrame(c *Coordinate) {
 	leftX, topY, rightX, bottomY := getBoundaries()
+	c.x += leftX + FRAME_BORDER_THICKNESS
+	c.y += topY + FRAME_BORDER_THICKNESS
+	for c.x >= rightX {
+		c.x--
+	}
+	for c.y >= bottomY {
+		c.y--
+	}
 
 }
 
