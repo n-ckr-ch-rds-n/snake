@@ -1,9 +1,22 @@
 package main
 
-type Coordinate struct{
+import "github.com/gdamore/tcell/v2/encoding"
+
+type Coordinate struct {
 	x, y int
 }
 
-func main() {
+type Snake struct {
+	points                      []*Coordinate
+	columnVelocity, rowVelocity int
+	symbol                      rune
+}
 
+type Apple struct {
+	point *Coordinate
+	symbol rune
+}
+
+func main() {
+	encoding.Register()
 }
