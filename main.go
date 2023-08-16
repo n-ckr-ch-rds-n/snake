@@ -56,7 +56,7 @@ func initScreen() {
 		fmt.Fprintf(os.Stderr, "%v\n", err)
 		os.Exit(1)
 	}
-	defStyle := tcell.StyleDefault.Background(tcell.ColorBlack).Foreground(tcell.ColorWhite)
+	defStyle := tcell.StyleDefault.Background(tcell.ColorRed).Foreground(tcell.ColorGreen)
 	Screen.SetStyle(defStyle)
 	screenWidth, screenHeight := Screen.Size()
 	if screenWidth < FRAME_WIDTH || screenHeight < FRAME_HEIGHT {
@@ -174,7 +174,10 @@ func printUnfilledRectangle(
 		printToFrame(xOrigin+i, yOrigin, borderThickness, borderThickness, tcell.StyleDefault, upperBorder)
 		printToFrame(xOrigin+i, yOrigin+height-1, borderThickness, borderThickness, tcell.StyleDefault, lowerBorder)
 	}
-	
+	for i := 1; i < height - 1; i++ {
+		printToFrame(xOrigin, yOrigin+i, borderThickness, borderThickness, tcell.StyleDefault, verticalBorder)
+		printToFrame(xOrigin+width-1, yOrigin+i, borderThickness, borderThickness, tcell.StyleDefault, verticalBorder)
+	}
 }
 
 func printToFrame(x, y, w, h int, style tcell.Style, char rune) {
