@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"os"
-
 	"github.com/gdamore/tcell/v2"
 )
 
@@ -28,6 +27,7 @@ const FRAME_WIDTH = 80
 const FRAME_HEIGHT = 15
 const FRAME_BORDER_THICKNESS = 1
 const SNAKE_SYMBOL = 0x2588
+const APPLE_SYMBOL = 0x25CF
 
 func main() {
 	initScreen()
@@ -60,6 +60,10 @@ func initGameObjects() {
 		rowVelocity:    1,
 		symbol:         SNAKE_SYMBOL,
 	}
+	apple := &Apple{
+		point: getInitialAppleCoordinates(),
+		symbol: APPLE_SYMBOL,
+	}
 }
 
 func getInitialSnakeCoordinates() []*Coordinate {
@@ -77,6 +81,12 @@ func getInitialSnakeCoordinates() []*Coordinate {
 		{snakeInitialCoordinate3.x, snakeInitialCoordinate3.y},
 		{snakeInitialCoordinate4.x, snakeInitialCoordinate4.y},
 	}
+}
+
+func getInitialAppleCoordinates() *Coordinate {
+	appleInitialCoordinate := &Coordinate{FRAME_WIDTH / 2, FRAME_HEIGHT / 2}
+	transformCoordinateInsideFrame(appleInitialCoordinate)
+	return appleInitialCoordinate
 }
 
 func transformCoordinateInsideFrame(c *Coordinate) {
