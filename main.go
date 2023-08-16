@@ -18,12 +18,15 @@ type Snake struct {
 }
 
 type Apple struct {
-	point *Coordinate
+	point  *Coordinate
 	symbol rune
 }
 
-func main() {
+const FRAME_WIDTH = 80
+const FRAME_HEIGHT = 15
 
+func main() {
+	initScreen()
 }
 
 func initScreen() {
@@ -35,6 +38,13 @@ func initScreen() {
 	}
 	if err = Screen.Init(); err != nil {
 		fmt.Fprintf(os.Stderr, "%v\n", err)
+		os.Exit(1)
+	}
+	defStyle := tcell.StyleDefault.Background(tcell.ColorBlack).Foreground(tcell.ColorWhite)
+	Screen.SetStyle(defStyle)
+	screenWidth, screenHeight := Screen.Size()
+	if screenWidth < FRAME_WIDTH || screenHeight < FRAME_HEIGHT {
+		fmt.Printf("The game frame is defined with %d width and %d height. Increase terminal size.", FRAME_WIDTH, FRAME_HEIGHT)
 		os.Exit(1)
 	}
 }
