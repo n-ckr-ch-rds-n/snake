@@ -22,8 +22,12 @@ type Apple struct {
 	symbol rune
 }
 
+var screenWidth, screenHeight int
+
 const FRAME_WIDTH = 80
 const FRAME_HEIGHT = 15
+const FRAME_BORDER_THICKNESS = 1
+const SNAKE_SYMBOL = 0x2588
 
 func main() {
 	initScreen()
@@ -47,4 +51,36 @@ func initScreen() {
 		fmt.Printf("The game frame is defined with %d width and %d height. Increase terminal size.", FRAME_WIDTH, FRAME_HEIGHT)
 		os.Exit(1)
 	}
+}
+
+func initGameObjects() {
+	snake = &Snake{
+		points:         getInitialSnakeCoordinates(),
+		columnVelocity: 0,
+		rowVelocity:    1,
+		symbol:         SNAKE_SYMBOL,
+	}
+}
+
+func getInitialSnakeCoordinates() []*Coordinate {
+	snakeInitialCoordinate1 := &Coordinate{8, 4}
+	transformInitialCoordinateInsideFrame(snakeInitialCoordinate1)
+}
+
+func transformInitialCoordinateInsideFrame(c *Coordinate) {
+	leftX, topY, rightX, bottomY := getBoundaries()
+
+}
+
+func getBoundaries() (int, int, int, int) {
+	originX, originY := getFrameOrigin()
+	topY := originY
+	bottomY := originY + FRAME_HEIGHT - FRAME_BORDER_THICKNESS
+	leftX := originX
+	rightX := originX + FRAME_WIDTH - FRAME_BORDER_THICKNESS
+	return leftX, topY, rightX, bottomY
+}
+
+func getFrameOrigin() (int, int) {
+	return (screenWidth-FRAME_WIDTH)/2 - FRAME_BORDER_THICKNESS, (screenHeight-FRAME_HEIGHT)/2 - FRAME_BORDER_THICKNESS
 }
