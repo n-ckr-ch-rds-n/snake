@@ -1,14 +1,14 @@
 package main
 
 import (
-	"time"
-
 	"github.com/gdamore/tcell/v2"
+	"time"
 )
 
 type Game struct {
 	Screen    tcell.Screen
 	snakeBody SnakeBody
+	FoodPos   Part
 }
 
 func drawParts(s tcell.Screen, parts []Part, style tcell.Style) {
