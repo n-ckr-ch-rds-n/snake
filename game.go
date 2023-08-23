@@ -21,8 +21,9 @@ func (g *Game) Run() {
 	snakeStyle := tcell.StyleDefault.Background(tcell.ColorWhite).Foreground(tcell.ColorWhite)
 
 	for {
+		longerSnake := false
 		g.Screen.Clear()
-		g.snakeBody.Update(width, height)
+		g.snakeBody.Update(width, height, longerSnake)
 		drawParts(g.Screen, g.snakeBody.Parts, snakeStyle)
 		time.Sleep(40 * time.Millisecond)
 		g.Screen.Show()

@@ -16,7 +16,7 @@ func (sb *SnakeBody) ChangeDir(vertical, horizontal int) {
 	sb.Xspeed = horizontal
 }
 
-func (sb *SnakeBody) Update(width, height int) {
+func (sb *SnakeBody) Update(width, height int, longerSnake bool) {
 	sb.Parts = append(sb.Parts, sb.Parts[len(sb.Parts)-1].GetUpdatedPart(sb, width, height))
 	sb.Parts = sb.Parts[1:]
 }
