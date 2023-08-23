@@ -27,6 +27,15 @@ func (g *Game) UpdateFoodPos(width, height int) {
 	}
 }
 
+func checkCollision(parts []Part, otherPart Part) bool {
+	for _, part := range parts {
+		if part.X == otherPart.X && part.Y == otherPart.Y {
+			return true
+		}
+	}
+	return false
+}
+
 func (g *Game) Run() {
 	width, height := g.Screen.Size()
 	snakeStyle := tcell.StyleDefault.Background(tcell.ColorWhite).Foreground(tcell.ColorWhite)
