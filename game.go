@@ -1,8 +1,10 @@
 package main
 
 import (
-	"github.com/gdamore/tcell/v2"
+	"math/rand"
 	"time"
+
+	"github.com/gdamore/tcell/v2"
 )
 
 type Game struct {
@@ -17,10 +19,19 @@ func drawParts(s tcell.Screen, parts []Part, style tcell.Style) {
 	}
 }
 
+func (g *Game) UpdateFoodPos(width, height int) {
+	g.FoodPos.X = rand.Intn(width)
+	g.FoodPos.Y = rand.Intn(height)
+	if g.FoodPos.Y == 1 && g.FoodPos.X < 10 {
+		g.UpdateFoodPos(width, height)
+	}
+}
+
 func (g *Game) Run() {
 	width, height := g.Screen.Size()
 	snakeStyle := tcell.StyleDefault.Background(tcell.ColorWhite).Foreground(tcell.ColorWhite)
 	g.snakeBody.ResetPos(width, height)
+	g.UpdateFoodPos(width, height)
 	for {
 		longerSnake := false
 		g.Screen.Clear()
