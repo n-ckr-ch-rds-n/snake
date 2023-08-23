@@ -44,6 +44,13 @@ func (g *Game) Run() {
 	for {
 		longerSnake := false
 		g.Screen.Clear()
+		if checkCollision(g.snakeBody.Parts[len(g.snakeBody.Parts)-1:], g.FoodPos) {
+			g.UpdateFoodPos(width, height)
+			longerSnake = true
+		}
+		if checkCollision(g.snakeBody.Parts[:len(g.snakeBody.Parts)-1], g.snakeBody.Parts[len(g.snakeBody.Parts)-1]) {
+			break
+		}
 		g.snakeBody.Update(width, height, longerSnake)
 		drawParts(g.Screen, g.snakeBody.Parts, snakeStyle)
 		time.Sleep(40 * time.Millisecond)
