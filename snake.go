@@ -6,7 +6,7 @@ type SnakePart struct {
 }
 
 type SnakeBody struct {
-	Parts []SnakePart
+	Parts  []SnakePart
 	Xspeed int
 	Yspeed int
 }
@@ -18,7 +18,9 @@ func (sb *SnakeBody) ChangeDir(vertical, horizontal int) {
 
 func (sb *SnakeBody) Update(width, height int, longerSnake bool) {
 	sb.Parts = append(sb.Parts, sb.Parts[len(sb.Parts)-1].GetUpdatedPart(sb, width, height))
-	sb.Parts = sb.Parts[1:]
+	if !longerSnake {
+		sb.Parts = sb.Parts[1:]
+	}
 }
 
 func (sp *SnakePart) GetUpdatedPart(sb *SnakeBody, width int, height int) SnakePart {
@@ -32,4 +34,24 @@ func (sp *SnakePart) GetUpdatedPart(sb *SnakeBody, width int, height int) SnakeP
 		newPart.Y += height
 	}
 	return newPart
+}
+
+func (sb *SnakeBody) ResetPos(width int, height int) {
+	snakeParts := []SnakePart{
+		{
+			X: int(width / 2),
+			Y: int(height / 2),
+		},
+		{
+			X: int(width/2) + 1,
+			Y: int(height / 2),
+		},
+		{
+			X: int(width/2) + 2,
+			Y: int(height / 2),
+		},
+	}
+	sb.Parts = snakeParts
+	sb.Xspeed = 1
+	sb.Yspeed = 0
 }
