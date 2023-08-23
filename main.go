@@ -7,13 +7,6 @@ import (
 	"github.com/gdamore/tcell/v2"
 )
 
-type SnakeBody struct {
-	X int
-	Y int
-	Xspeed int
-	Yspeed int
-}
-
 func main() {
 	fmt.Println("Loading snake ...")
 	screen, err := tcell.NewScreen()
@@ -31,4 +24,10 @@ func main() {
 		Xspeed: 1,
 		Yspeed: 0,
 	}
+
+	game := Game{
+		Screen: screen,
+		snakeBody: snakeBody,
+	}
+	
 }
