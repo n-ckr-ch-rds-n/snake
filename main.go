@@ -18,9 +18,24 @@ func main() {
 	}
 	defStyle := tcell.StyleDefault.Background(tcell.ColorBlack).Foreground(tcell.ColorWhite)
 	screen.SetStyle(defStyle)
+	
+	snakeParts := []SnakePart{
+		{
+			X: 5,
+			Y: 10,
+		},
+		{
+			X: 6,
+			Y: 10,
+		},
+		{
+			X: 7,
+			Y: 10,
+		},
+	}
+
 	snakeBody := SnakeBody{
-		X:      5,
-		Y:      10,
+		Parts: snakeParts,
 		Xspeed: 1,
 		Yspeed: 0,
 	}

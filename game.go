@@ -17,7 +17,7 @@ func (g *Game) Run() {
 	for {
 		g.Screen.Clear()
 		g.snakeBody.Update(width, height)
-		g.Screen.SetContent(g.snakeBody.X, g.snakeBody.Y, ' ', nil, snakeStyle)
+		// draw parts
 		time.Sleep(40 * time.Millisecond)
 		g.Screen.Show()
 	}
