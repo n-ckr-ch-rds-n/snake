@@ -1,8 +1,9 @@
 package main
 
 import (
-	"github.com/gdamore/tcell/v2"
 	"time"
+
+	"github.com/gdamore/tcell/v2"
 )
 
 type Game struct {
@@ -10,7 +11,7 @@ type Game struct {
 	snakeBody SnakeBody
 }
 
-func drawParts(s tcell.Screen, parts []SnakePart, style tcell.Style) {
+func drawParts(s tcell.Screen, parts []Part, style tcell.Style) {
 	for _, part := range parts {
 		s.SetContent(part.X, part.Y, ' ', nil, style)
 	}

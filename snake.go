@@ -1,12 +1,12 @@
 package main
 
-type SnakePart struct {
+type Part struct {
 	X int
 	Y int
 }
 
 type SnakeBody struct {
-	Parts  []SnakePart
+	Parts  []Part
 	Xspeed int
 	Yspeed int
 }
@@ -23,7 +23,7 @@ func (sb *SnakeBody) Update(width, height int, longerSnake bool) {
 	}
 }
 
-func (sp *SnakePart) GetUpdatedPart(sb *SnakeBody, width int, height int) SnakePart {
+func (sp *Part) GetUpdatedPart(sb *SnakeBody, width int, height int) Part {
 	newPart := *sp
 	newPart.X = (newPart.X + sb.Xspeed) % width
 	if newPart.X < 0 {
@@ -37,7 +37,7 @@ func (sp *SnakePart) GetUpdatedPart(sb *SnakeBody, width int, height int) SnakeP
 }
 
 func (sb *SnakeBody) ResetPos(width int, height int) {
-	snakeParts := []SnakePart{
+	snakeParts := []Part{
 		{
 			X: int(width / 2),
 			Y: int(height / 2),

@@ -2,9 +2,10 @@ package main
 
 import (
 	"fmt"
-	"github.com/gdamore/tcell/v2"
 	"log"
 	"os"
+
+	"github.com/gdamore/tcell/v2"
 )
 
 func main() {
@@ -18,8 +19,8 @@ func main() {
 	}
 	defStyle := tcell.StyleDefault.Background(tcell.ColorBlack).Foreground(tcell.ColorWhite)
 	screen.SetStyle(defStyle)
-	
-	snakeParts := []SnakePart{
+
+	snakeParts := []Part{
 		{
 			X: 5,
 			Y: 10,
@@ -35,7 +36,7 @@ func main() {
 	}
 
 	snakeBody := SnakeBody{
-		Parts: snakeParts,
+		Parts:  snakeParts,
 		Xspeed: 1,
 		Yspeed: 0,
 	}
