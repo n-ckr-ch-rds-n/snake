@@ -11,10 +11,6 @@ type Game struct {
 }
 
 func (g *Game) Run() {
-	// don't think we need to do this
-	defStyle := tcell.StyleDefault.Background(tcell.ColorBlack).Foreground(tcell.ColorWhite)
-	g.Screen.SetStyle(defStyle)
-
 	width, height := g.Screen.Size()
 	snakeStyle := tcell.StyleDefault.Background(tcell.ColorWhite).Foreground(tcell.ColorWhite)
 
