@@ -29,5 +29,24 @@ func main() {
 		Screen:    screen,
 		snakeBody: snakeBody,
 	}
-
+	go game.Run()
+	for {
+		switch event := game.Screen.PollEvent().(type) {
+		case *tcell.EventResize:
+			game.Screen.Sync()
+		case *tcell.EventKey:
+			if event.Key() == tcell.KeyEscape || event.Key() == tcell.KeyCtrlC {
+				game.Screen.Fini()
+				os.Exit(0)
+			} else if event.Key() == tcell.KeyUp {
+				game.snakeBody.ChangeDir(-1, 0)
+			} else if event.Key() == tcell.KeyDown {
+				game.snakeBody.ChangeDir(1, 0)
+			} else if event.Key() == tcell.KeyLeft {
+				game.snakeBody.ChangeDir(0, -1)
+			} else if event.Key() == tcell.KeyRight {
+				game.snakeBody.ChangeDir(0, 1)
+			}
+		}
+	}
 }
