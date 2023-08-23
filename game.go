@@ -19,7 +19,7 @@ func drawParts(s tcell.Screen, parts []SnakePart, style tcell.Style) {
 func (g *Game) Run() {
 	width, height := g.Screen.Size()
 	snakeStyle := tcell.StyleDefault.Background(tcell.ColorWhite).Foreground(tcell.ColorWhite)
-
+	g.snakeBody.ResetPos(width, height)
 	for {
 		longerSnake := false
 		g.Screen.Clear()
