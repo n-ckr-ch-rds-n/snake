@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"math/rand"
 	"time"
 
@@ -14,6 +15,7 @@ type Game struct {
 }
 
 func drawParts(s tcell.Screen, parts []Part, style tcell.Style) {
+	s.SetContent(5, 10, '\u25CF', nil, style)
 	for _, part := range parts {
 		s.SetContent(part.X, part.Y, ' ', nil, style)
 	}
@@ -38,6 +40,8 @@ func checkCollision(parts []Part, otherPart Part) bool {
 
 func (g *Game) Run() {
 	width, height := g.Screen.Size()
+	fmt.Println("width", width)
+	fmt.Println("height", height)
 	snakeStyle := tcell.StyleDefault.Background(tcell.ColorWhite).Foreground(tcell.ColorWhite)
 	g.snakeBody.ResetPos(width, height)
 	g.UpdateFoodPos(width, height)
