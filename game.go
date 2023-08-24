@@ -21,6 +21,23 @@ func drawParts(s tcell.Screen, parts []Part, foodPos Part, style tcell.Style) {
 	}
 }
 
+func drawText(s tcell.Screen, x1, y1, x2, y2 int, text string) {
+	row := y1
+	col := x1
+	style := tcell.StyleDefault.Background(tcell.ColorBlack).Foreground(tcell.ColorWhite)
+	for _, r := range text {
+		s.SetContent(col, row, r, nil, style)
+		col++
+		if col >= x2 {
+			row++
+			col = x1
+		}
+		if row > y2 {
+			break
+		}
+	}
+}
+
 func (g *Game) UpdateFoodPos(width, height int) {
 	g.FoodPos.X = rand.Intn(width)
 	g.FoodPos.Y = rand.Intn(height)
@@ -57,7 +74,7 @@ func (g *Game) Run() {
 		}
 		g.snakeBody.Update(width, height, longerSnake)
 		drawParts(g.Screen, g.snakeBody.Parts, g.FoodPos, snakeStyle)
-		time.Sleep(40 * time.Millisecond)
+		time.Sleep(60 * time.Millisecond)
 		g.Screen.Show()
 	}
 }
