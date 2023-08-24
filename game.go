@@ -14,8 +14,8 @@ type Game struct {
 	FoodPos   Part
 }
 
-func drawParts(s tcell.Screen, parts []Part, style tcell.Style) {
-	s.SetContent(5, 10, '\u25CF', nil, style)
+func drawParts(s tcell.Screen, parts []Part, foodPos Part, style tcell.Style) {
+	s.SetContent(foodPos.X, foodPos.Y, '\u25CF', nil, style)
 	for _, part := range parts {
 		s.SetContent(part.X, part.Y, ' ', nil, style)
 	}
@@ -56,7 +56,7 @@ func (g *Game) Run() {
 			break
 		}
 		g.snakeBody.Update(width, height, longerSnake)
-		drawParts(g.Screen, g.snakeBody.Parts, snakeStyle)
+		drawParts(g.Screen, g.snakeBody.Parts, g.FoodPos, snakeStyle)
 		time.Sleep(40 * time.Millisecond)
 		g.Screen.Show()
 	}
