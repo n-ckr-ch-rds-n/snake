@@ -74,6 +74,7 @@ func (g *Game) Run() {
 		}
 		g.snakeBody.Update(width, height, longerSnake)
 		drawParts(g.Screen, g.snakeBody.Parts, g.FoodPos, snakeStyle)
+		drawText(g.Screen, 1, 1, 12, 1, "Score: 10")
 		time.Sleep(60 * time.Millisecond)
 		g.Screen.Show()
 	}
