@@ -12,6 +12,7 @@ type Game struct {
 	Screen    tcell.Screen
 	snakeBody SnakeBody
 	FoodPos   Part
+	Score     int
 }
 
 func drawParts(s tcell.Screen, parts []Part, foodPos Part, style tcell.Style) {
@@ -62,12 +63,14 @@ func (g *Game) Run() {
 	snakeStyle := tcell.StyleDefault.Background(tcell.ColorWhite).Foreground(tcell.ColorWhite)
 	g.snakeBody.ResetPos(width, height)
 	g.UpdateFoodPos(width, height)
+	g.Score = 0
 	for {
 		longerSnake := false
 		g.Screen.Clear()
 		if checkCollision(g.snakeBody.Parts[len(g.snakeBody.Parts)-1:], g.FoodPos) {
 			g.UpdateFoodPos(width, height)
 			longerSnake = true
+			g.Score++
 		}
 		if checkCollision(g.snakeBody.Parts[:len(g.snakeBody.Parts)-1], g.snakeBody.Parts[len(g.snakeBody.Parts)-1]) {
 			break
