@@ -45,6 +45,7 @@ func main() {
 		Screen:    screen,
 		snakeBody: snakeBody,
 		Score:     0,
+		GameOver:  false,
 	}
 	go game.Run()
 	for {

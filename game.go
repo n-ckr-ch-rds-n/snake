@@ -1,11 +1,9 @@
 package main
 
 import (
-	"fmt"
 	"math/rand"
 	"strconv"
 	"time"
-
 	"github.com/gdamore/tcell/v2"
 )
 
@@ -60,8 +58,6 @@ func checkCollision(parts []Part, otherPart Part) bool {
 
 func (g *Game) Run() {
 	width, height := g.Screen.Size()
-	fmt.Println("width", width)
-	fmt.Println("height", height)
 	snakeStyle := tcell.StyleDefault.Background(tcell.ColorWhite).Foreground(tcell.ColorWhite)
 	g.snakeBody.ResetPos(width, height)
 	g.UpdateFoodPos(width, height)
@@ -82,4 +78,7 @@ func (g *Game) Run() {
 		time.Sleep(60 * time.Millisecond)
 		g.Screen.Show()
 	}
+	g.GameOver = true
+	drawText(g.Screen, width/2-20, height/2, width/2+20, height/2, "Game Over, Score: "+strconv.Itoa(g.Score))
+	g.Screen.Show()
 }
