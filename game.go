@@ -14,6 +14,7 @@ type Game struct {
 	snakeBody SnakeBody
 	FoodPos   Part
 	Score     int
+	GameOver  bool
 }
 
 func drawParts(s tcell.Screen, parts []Part, foodPos Part, style tcell.Style) {
