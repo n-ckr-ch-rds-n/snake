@@ -1,10 +1,10 @@
 package main
 
 import (
+	"github.com/gdamore/tcell/v2"
 	"math/rand"
 	"strconv"
 	"time"
-	"github.com/gdamore/tcell/v2"
 )
 
 type Game struct {
@@ -79,6 +79,6 @@ func (g *Game) Run() {
 		g.Screen.Show()
 	}
 	g.GameOver = true
-	drawText(g.Screen, width/2-20, height/2, width/2+20, height/2, "Game Over, Score: "+strconv.Itoa(g.Score))
+	drawText(g.Screen, width/2-20, height/2, width/2+20, height/2, "Game Over, Score: "+strconv.Itoa(g.Score)+". Play again? y/n")
 	g.Screen.Show()
 }

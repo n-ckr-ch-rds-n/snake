@@ -2,10 +2,9 @@ package main
 
 import (
 	"fmt"
+	"github.com/gdamore/tcell/v2"
 	"log"
 	"os"
-
-	"github.com/gdamore/tcell/v2"
 )
 
 func main() {
@@ -64,6 +63,11 @@ func main() {
 				game.snakeBody.ChangeDir(0, -1)
 			} else if event.Key() == tcell.KeyRight {
 				game.snakeBody.ChangeDir(0, 1)
+			} else if event.Rune() == 'y' && game.GameOver {
+				go game.Run()
+			} else if event.Rune() == 'n' && game.GameOver {
+				game.Screen.Fini()
+				os.Exit(0)
 			}
 		}
 	}
