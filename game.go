@@ -64,7 +64,6 @@ func (g *Game) Run() {
 	snakeStyle := tcell.StyleDefault.Background(tcell.ColorWhite).Foreground(tcell.ColorWhite)
 	g.snakeBody.ResetPos(width, height)
 	g.UpdateFoodPos(width, height)
-	g.Score = 0
 	for {
 		longerSnake := false
 		g.Screen.Clear()

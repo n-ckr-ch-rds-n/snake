@@ -44,6 +44,7 @@ func main() {
 	game := Game{
 		Screen:    screen,
 		snakeBody: snakeBody,
+		Score:     0,
 	}
 	go game.Run()
 	for {
